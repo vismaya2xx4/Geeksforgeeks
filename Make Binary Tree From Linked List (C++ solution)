@@ -1,0 +1,40 @@
+void treeLeft(TreeNode*& root, vector<int>& store, int index);
+void treeRight(TreeNode*& root, vector<int>& store, int index);
+
+void treeLeft(TreeNode*&root, vector<int>&store, int index){
+    //left
+   int leftIndex = 2*index +1;
+   if(leftIndex < store.size()){
+        root = new TreeNode (store[leftIndex]);
+        treeLeft(root->left, store, leftIndex);
+        treeRight(root->right, store, leftIndex);
+   }
+    
+}
+void treeRight(TreeNode*&root, vector<int>&store, int index){
+    //right
+  int  rightIndex = 2*index +2;
+   if(rightIndex < store.size()){
+        root = new TreeNode (store[rightIndex]);
+        treeLeft(root->left, store, rightIndex);
+        treeRight(root->right, store, rightIndex);
+   }
+}
+
+// Function to make binary tree from linked list.
+void convert(Node *head, TreeNode *&root) {
+    // Your code here
+    // first of all convert the linked list to a vector array
+    vector<int> store;
+    
+    
+    while(head != nullptr){
+        store.push_back(head->data);
+        head = head->next;
+    }
+    
+    root = new TreeNode (store[0]);
+    treeLeft(root->left, store,0);
+    treeRight(root->right, store, 0);
+
+}
