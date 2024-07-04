@@ -1,0 +1,30 @@
+class Solution {
+  public:
+     string generate(Node* root, unordered_map<string, int>& count, vector<Node*>& ans) 
+     {
+        if (root == nullptr)
+        {
+              return "";
+        }          
+
+        const string subtree =  to_string(root->data) + "#" +
+                                generate(root->left, count, ans) + "#" +
+                                generate(root->right, count, ans);
+                                
+           //# for encoding null left and right childs
+        
+             if (++count[subtree] == 2)      //duplicate subtree
+             ans.push_back(root); //add the roots
+             
+        return subtree;
+    
+     }    
+    
+    vector<Node*> printAllDups(Node* root) 
+    {
+        vector<Node*> ans;                  // Creating our answer vector
+        unordered_map<string, int> count;   // creating a map to store all subtree as strings
+        generate(root, count, ans);          // call to the fucntion to store all the subtree in map.
+        return ans;
+     }
+};
