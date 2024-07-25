@@ -1,0 +1,15 @@
+class Solution {
+    public Node functionToBST(int[] nums,int low, int high)
+    {
+        if(high<low)
+            return null;
+        int mid = (low+high)/2;
+        Node root = new Node(nums[mid]);
+        root.left = functionToBST(nums,low,mid-1);
+        root.right = functionToBST(nums,mid+1,high);
+        return root;
+    }
+    public Node sortedArrayToBST(int[] nums) {
+        return functionToBST(nums,0,nums.length-1);
+    }
+}
