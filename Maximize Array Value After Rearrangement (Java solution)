@@ -1,0 +1,17 @@
+class Solution {
+
+    int Maximize(int arr[]) {
+        
+        Arrays.sort(arr);
+        long mod=1000000007;
+        long ans=0;
+        
+        for(int i=0;i<arr.length;i++){
+            long x=(long)arr[i];
+            long y=i;
+            ans=(ans+(x*y));
+        }
+        
+        return (int)((ans)%mod);
+    }
+}
