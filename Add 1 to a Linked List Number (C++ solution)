@@ -1,0 +1,35 @@
+class Solution {
+  public:
+    Node* addOne(Node* head) {
+        // Your Code here
+        Node * l=NULL, *r=head;
+        while(r && r->data == 9) r=r->next;
+        if(!r){           //when all nodes have 9
+            Node* h=new Node(1);
+            h->next=head;
+            l=head;
+            while(l){
+                l->data=0;
+                l=l->next;
+            }
+            return h;
+        }
+        l=r;
+        while(l && r){         //finding suffix of 9
+            while(l->next && l->next->data != 9) l=l->next;
+            r=l->next;
+            while(r && r->data == 9) r=r->next;
+            if(!r){      
+                l->data=l->data + 1;
+                l=l->next;
+                while(l){
+                    l->data=0;
+                    l=l->next;
+                }
+                break;
+            }
+            l=r;
+        }
+        return head;
+    }
+};
