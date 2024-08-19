@@ -1,0 +1,31 @@
+class Solution:
+    def swap(self,arr,a,b):
+        arr[a],arr[b]=arr[b],arr[a]
+    def partition(self,arr,start,end):
+        pivot_index=start
+        pivot=arr[pivot_index]
+        while start < end:
+            while start < len(arr)-1 and arr[start] <= pivot:
+                start+=1
+            while arr[end] > pivot:
+                end-=1
+            if start < end:
+                self.swap(arr,start,end)
+        self.swap(arr,pivot_index,end)
+        return end
+    def quicksort(self,arr,start,end,k):
+        if start == end:
+            return arr[start]
+
+        pivot_index = self.partition(arr, start, end)
+        
+        if k == pivot_index:
+            return arr[k]
+        elif k < pivot_index:
+            return self.quicksort(arr, start, pivot_index - 1, k)
+        else:
+            return self.quicksort(arr, pivot_index + 1, end, k)
+    def kthSmallest(self, arr,k):
+        if k <= 0 or k > len(arr):
+            return None  
+        return self.quicksort(arr, 0, len(arr) - 1, k - 1)
