@@ -1,0 +1,36 @@
+class Solution {
+  public:
+
+    void rearrange(vector<int> &arr) {
+        // code here
+         vector<int> pos, neg;
+
+    // Step 1: Separate positive and negative elements
+    for (int num : arr) {
+        if (num >= 0)
+            pos.push_back(num);
+        else
+            neg.push_back(num);
+    }
+
+    // Step 2: Merge the positive and negative elements alternately
+    int i = 0, j = 0, k = 0;
+    int n = arr.size();
+    while (i < pos.size() && j < neg.size()) {
+        if (k % 2 == 0) {
+            arr[k++] = pos[i++];
+        } else {
+            arr[k++] = neg[j++];
+        }
+    }
+
+    // Step 3: Add remaining elements
+    while (i < pos.size()) {
+        arr[k++] = pos[i++];
+    }
+    while (j < neg.size()) {
+        arr[k++] = neg[j++];
+    }
+    
+    }
+};
