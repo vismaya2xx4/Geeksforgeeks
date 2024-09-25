@@ -1,0 +1,26 @@
+class Solution {
+  public:
+    // Function to check whether the list is palindrome.
+    bool isPalindrome(Node *head) {
+        // Your code here
+        Node *i=head,*j=head,*pre=NULL,*nxt;
+        while(j &&  j->next){
+            j=j->next->next;
+            nxt=i->next;
+            i->next=pre;
+            pre=i;
+            i=nxt;
+        }
+        if(pre==NULL)return true;
+        if(i->data!=pre->data){
+            i=i->next;
+        }
+        while(i && pre){
+            if(i->data!=pre->data)return false;
+            i=i->next;
+            pre=pre->next;
+        }
+        if(i!=pre)return false;
+        return true;
+    }
+};
