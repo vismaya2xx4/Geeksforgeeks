@@ -1,0 +1,21 @@
+class Solution {
+  public:
+    int rotateDelete(vector<int> &arr) {
+        int i=1;
+        while(true){
+            
+            int ele=arr.back();
+            arr.insert(arr.begin(),ele);
+            arr.pop_back();
+            int n=arr.size();
+            if(i<n)
+            arr.erase(arr.begin()+n-i);
+            else
+            arr.erase(arr.begin());
+            if(arr.size()==1)
+            break;
+            i++;
+        }
+        return arr[0];
+    }
+};
