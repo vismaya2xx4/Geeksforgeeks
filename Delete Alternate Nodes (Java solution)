@@ -1,0 +1,17 @@
+class Solution {
+    public void deleteAlt(Node head) {
+        // Code Here
+        Node temp = head;
+        while(temp.next!=null){
+            if(temp.next.next!=null){
+                head.next=temp.next.next;
+                head=head.next;
+                temp=head;
+            }
+            else{
+                head.next=null;
+            }
+        }
+        
+    }
+}
