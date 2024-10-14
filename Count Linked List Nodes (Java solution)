@@ -1,0 +1,12 @@
+class Solution {
+    public int getCount(Node head) {
+        if(head == null) return 0; 
+        int count = 1;
+        Node temp = head;
+        while(temp != null && temp.next != null) {
+            count += 2;
+            temp = temp.next.next;
+        }
+        return temp == null ? count - 1 : count;
+    }
+}
