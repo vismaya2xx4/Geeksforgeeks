@@ -1,0 +1,25 @@
+class Solution {
+    // Function to count the number of subarrays which adds to the given sum.
+    static int subArraySum(int arr[], int tar) {
+    // HashMap to store prefixsum that previously appeared
+    HashMap<Integer,Integer> map = new HashMap<>();
+    // Initial Condition
+    map.put(0,1);
+    int count = 0,ps = 0;
+    for(int i =0;i<arr.length;i++){
+        ps += arr[i];
+        
+        // as we know currsum - sum if contained by arr so that only left sum
+        // so we add the count that it have
+        if(map.containsKey(ps - tar)){
+            count += map.get(ps-tar);
+        }
+        // since if we get a match so we need to uncrease count 
+        // also if we get a new prefix sum we want to increase count 
+        map.put(ps,map.getOrDefault(ps,0)+1);
+    }
+    
+    return count;
+    }
+        
+    }
