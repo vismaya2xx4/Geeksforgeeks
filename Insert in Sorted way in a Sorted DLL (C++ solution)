@@ -1,0 +1,44 @@
+class Solution {
+  public:
+    Node* sortedInsert(Node* head, int x) {
+    // Step 1: Create a new node and set its data
+    Node* node = new Node;
+    node->data = x;
+    node->next = nullptr;
+    node->prev = nullptr;
+    
+    // Step 2: If the list is empty, make the new node the head
+    if (!head) 
+    {
+        return node;
+    }
+    
+    // Step 3: Insert at the beginning if x is smaller than the head's data
+    if (x < head->data) 
+    {
+        node->next = head;
+        head->prev = node;
+        return node; // New head
+    }
+    
+    // Step 4: Traverse to find the insertion point
+    Node* temp = head;
+    while (temp->next && temp->next->data < x) 
+    {
+        temp = temp->next;
+    }
+    
+    // Step 5: Insert the new node
+    node->next = temp->next;
+    if (temp->next) 
+    {
+        temp->next->prev = node;
+    }
+    temp->next = node;
+    node->prev = temp;
+
+    return head;
+}
+
+
+};
