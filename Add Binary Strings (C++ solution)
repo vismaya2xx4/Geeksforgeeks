@@ -1,0 +1,24 @@
+class Solution {
+  public:
+    string addBinary(string& s1, string& s2) {
+        int n = s1.size(), m = s2.size(); string finalS = "", res = "";
+        reverse(s1.begin(), s1.end()); reverse(s2.begin(),s2.end());
+        for ( int i = n; i<max(m,n); i++ ) s1 += '0';
+        for ( int i = m; i<max(m,n); i++ ) s2 += '0';
+        int i = 0, j = 0, carry = 0;
+        while ( i < max(n,m) ){
+            int sum = (s1[i] == '1') + (s2[i] == '1') + carry;
+            if ( sum > 1 ) carry = 1;
+            else carry = 0;
+            if ( sum%2 == 1 ) finalS += '1';
+            else finalS += '0';
+            i++;
+        } if ( carry ) finalS += '1';
+        reverse(finalS.begin(), finalS.end());
+        bool flag = false;
+        for ( auto i : finalS ){
+            flag |= (i == '1');
+            if ( flag ) res += i;
+        } return res;
+    }
+};
