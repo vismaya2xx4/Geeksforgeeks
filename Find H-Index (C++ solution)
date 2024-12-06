@@ -1,0 +1,27 @@
+class Solution {
+
+  public:
+
+    // Function to find hIndex
+
+    int hIndex(vector<int>& c) {
+
+        sort(c.begin(),c.end());
+
+        int cn=0,i,n=c.size();
+
+        i = n-1;
+
+        while(i>=0&&c[i]>cn){
+
+            cn++; 
+
+            i--;
+
+        }
+
+        return cn;
+
+    }
+
+};
