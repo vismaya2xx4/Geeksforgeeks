@@ -1,0 +1,23 @@
+class Solution:
+    def kthElement(self, a, b, k):
+        i, j = 0, 0  # Two pointers for arrays a and b
+        while k > 0:
+            if i == len(a):  # If we've exhausted array 'a'
+                return b[j + k - 1]
+            if j == len(b):  # If we've exhausted array 'b'
+                return a[i + k - 1]
+            if k == 1:  # If we only need the smallest element
+                return min(a[i], b[j])
+            
+            # Calculate mid index for current k
+            mid = k // 2
+            idx_a = min(i + mid, len(a)) - 1
+            idx_b = min(j + mid, len(b)) - 1
+            
+            # Compare and discard elements
+            if a[idx_a] <= b[idx_b]:
+                k -= (idx_a - i + 1)
+                i = idx_a + 1
+            else:
+                k -= (idx_b - j + 1)
+                j = idx_b + 1
