@@ -1,0 +1,53 @@
+class Solution {
+  public:
+    vector<int> spirallyTraverse(vector<vector<int> > &mat) {
+        vector<int> ans;
+        
+        int n = mat.size();
+        int m = mat[0].size();
+            int l = 0;
+            int r = 0;
+        while(1){
+            // checking all were done in vector or not
+            bool check = 1;
+            // left side
+            while(r < m && mat[l][r]!=-1 ){
+                check=0;
+                int d= mat[l][r];
+                ans.push_back(d);
+                mat[l][r++]=-1;
+            }
+            r--;
+            // down side
+            l++;
+            while(l < n && mat[l][r]!=-1 ){
+                check=0;
+                int d= mat[l][r];
+                ans.push_back(d);
+                  mat[l++][r]=-1;
+            }
+            // right side
+            l--;
+            r--;
+            while(r >= 0 && mat[l][r]!=-1 ){
+                check=0;
+                int d= mat[l][r];
+                ans.push_back(d);
+                  mat[l][r--]=-1;
+            }
+            // up side
+            r++;
+            l--;
+            while(l >= 0 && mat[l][r]!=-1 ){
+                check=0;
+                int d= mat[l][r];
+                ans.push_back(d);
+                  mat[l--][r]=-1;
+            }
+            l++;
+            r++;
+            if(check==1) break;
+        }
+        return ans;
+    }
+};
