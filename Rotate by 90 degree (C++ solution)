@@ -1,0 +1,15 @@
+class Solution {
+  public:
+    // Function to rotate matrix anticlockwise by 90 degrees.
+    void rotateby90(vector<vector<int>>& mat) {
+        for(int cir=0,n=mat.size();cir<(n+1)/2;cir++)
+        for(int i=cir;i<n-cir-1;i++)
+        {
+            int temp = mat[i][n-cir-1];
+            mat[i][n-cir-1] = mat[n-cir-1][n-1-i];
+            mat[n-cir-1][n-1-i] = mat[n-1-i][cir];
+            mat[n-1-i][cir] = mat[cir][i];
+            mat[cir][i] = temp;
+        }
+    }
+};
