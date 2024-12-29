@@ -1,0 +1,29 @@
+class Solution {
+  public:
+    vector<int> intersectionWithDuplicates(vector<int>& a, vector<int>& b) 
+    {
+        set<int> inter;
+        for(int i=0;i<a.size();i++)
+        {
+            int count=0;
+            for(int j=0;j<b.size();j++)
+            {
+                if(a[i]==b[j])
+                {
+                    count=1;
+                    break;
+                }
+            }
+            if(count==1)
+            {
+                inter.insert(a[i]);
+            }
+        }
+        vector<int> ans;
+        for(auto &inte:inter)
+        {
+            ans.push_back(inte);
+        }
+        return ans;
+    }
+};
