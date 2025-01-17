@@ -1,0 +1,25 @@
+class Solution {
+    public static int[] productExceptSelf(int arr[]) {
+        // code here
+        int hasZero=0,product=1;
+        for(int i: arr){
+            if(hasZero==0 && i==0){
+                hasZero=1;
+            }
+            else{
+                product*=i;
+            }
+        }
+        int[] ans = new int[arr.length];
+        for(int i=0; i<arr.length; i++){
+            if(arr[i]==0){
+                ans[i]=product;
+            } else if (hasZero == 1){
+                ans[i]=0;
+            } else {
+                ans[i]=product/arr[i];
+            }
+        }
+        return ans;
+    }
+}
