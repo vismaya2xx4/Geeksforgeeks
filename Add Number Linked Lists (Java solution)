@@ -1,0 +1,58 @@
+class Solution {
+    static Node addTwoLists(Node num1, Node num2) {
+        // code here
+        if(num1==null){
+            return num2;
+        }
+        if(num2==null){
+            return num1;
+        }
+        Node newNum1=reverse(num1);
+        Node newNum2=reverse(num2);
+        int carry=0;
+        Node dummyNode=new Node(0);
+        Node res=dummyNode;
+        while(newNum1!=null || newNum2!=null){
+            int sum=carry;
+            if(newNum1!=null){
+                sum+=newNum1.data;
+            }
+             if(newNum2!=null){
+                sum+=newNum2.data;
+            }
+            Node newNode = new Node(sum%10);
+            res.next=newNode;
+            carry=sum/10;
+            res=res.next;
+            if(newNum1!=null){
+                newNum1=newNum1.next;
+            }
+            if(newNum2!=null){
+                newNum2=newNum2.next;
+            }
+        }
+        if(carry!=0){
+            Node newNode=new Node(carry);
+            res.next=newNode;
+            res=res.next;
+        }
+        Node ans=reverse(dummyNode.next);
+        while(ans.data==0){
+            ans=ans.next;
+        }
+        return ans;
+       
+    }
+     static Node reverse(Node head){
+            Node curr = head;
+            Node prev=null;
+            while(curr!=null){
+                Node temp=curr.next;
+                curr.next=prev;
+                prev=curr;
+                curr=temp;
+                
+            }
+            return prev;
+        }
+}
