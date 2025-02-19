@@ -1,0 +1,26 @@
+class Solution {
+    public ArrayList<Double> getMedian(int[] arr) {
+        PriorityQueue<Integer> max=new PriorityQueue<>(Collections.reverseOrder());
+        PriorityQueue<Integer> min=new PriorityQueue<>();
+        ArrayList<Double> list=new ArrayList<>();
+        for(int num:arr){
+            heapadd(num,max,min);
+            list.add(median(max,min));
+        }
+        return list;
+    }
+    public void heapadd(int num,PriorityQueue<Integer> max,PriorityQueue<Integer> min){
+        if(max.isEmpty() || max.peek()>=num){
+            max.add(num);
+        }else min.add(num);
+        if(max.size()>min.size()+1){
+            min.add(max.poll());
+        }else if (min.size() > max.size()) {
+            max.add(min.poll());
+        }
+    }
+    public double median(PriorityQueue<Integer> max,PriorityQueue<Integer> min){
+        if(max.size()>min.size()) return max.peek();
+        return (max.peek()+min.peek())/2.0;
+    }
+}
