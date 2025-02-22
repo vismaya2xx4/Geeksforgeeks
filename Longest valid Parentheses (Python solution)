@@ -1,0 +1,27 @@
+class Solution:
+    def maxLength(self, s):
+        # code here
+        "((())()"
+        #count open and close from left to right and from right to left
+        open, close, ans = 0, 0, 0
+        for e in s:
+            if e == '(':
+                open += 1
+            else:
+                close += 1
+            if open < close:
+                open, close = 0, 0
+            if open == close:
+                ans = max(ans, open+close)
+        
+        open, close = 0, 0
+        for e in s[::-1]:
+            if e == '(':
+                open += 1
+            else:
+                close += 1
+            if open > close:
+                open, close = 0, 0
+            if open == close:
+                ans = max(ans, open+close)
+        return ans
