@@ -1,0 +1,43 @@
+class Solution {
+  public:
+  vector<int> prevSmaller(vector<int>&arr){
+      vector<int>vec;
+      stack<int>st;
+      for(int i=0;i<arr.size();i++){
+          while(st.empty()==false && arr[st.top()]>=arr[i])
+          st.pop();
+          if(st.empty())
+          vec.push_back(-1);
+          else
+          vec.push_back(st.top());
+          st.push(i);
+      }
+      return vec;
+  }
+  vector<int> nextSmaller(vector<int>&arr){
+      vector<int>vec(arr.size());
+      stack<int>st;
+      for(int i=arr.size()-1;i>=0;i--){
+          while(st.empty()==false && arr[st.top()]>=arr[i])
+          st.pop();
+          if(st.empty())
+          vec[i]=arr.size();
+          else
+          vec[i]=st.top();
+          st.push(i);
+      }
+      return vec;
+  }
+    vector<int> maxOfMins(vector<int>& arr) {
+        vector<int>preSmall=prevSmaller(arr);
+        vector<int>nextSmall=nextSmaller(arr);
+        vector<int>ans(arr.size());
+        for(int i=0;i<arr.size();i++){
+            int winSize=nextSmall[i]-preSmall[i]-2;
+            ans[winSize]=max(ans[winSize],arr[i]);
+        }
+        for(int i=arr.size()-2;i>=0;i--)
+        ans[i]=max(ans[i],ans[i+1]);
+        return ans;
+    }
+};
