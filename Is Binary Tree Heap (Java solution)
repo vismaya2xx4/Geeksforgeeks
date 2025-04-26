@@ -1,0 +1,22 @@
+class Solution {
+    boolean isHeap(Node tree) {
+        Queue<Node> queue=new LinkedList<>();
+        queue.add(tree);
+        boolean ended=false;
+        while(!queue.isEmpty()){
+            int size=queue.size();
+            while(size-->0){
+                Node polled=queue.poll();
+                if(polled.left!=null){
+                    if(ended || polled.data<polled.left.data) return false;
+                    else queue.add(polled.left);
+                    if(polled.right==null) ended=true;
+                    else if(polled.data<polled.right.data) return false;
+                    else queue.add(polled.right);
+                }else if(polled.right!=null) return false;
+                else ended=true;
+            }
+        }
+        return true;
+    }
+}
