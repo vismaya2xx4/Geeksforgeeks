@@ -1,0 +1,13 @@
+class Solution:
+    def segregate(self, head):
+        firstHead=head
+        sortArray=[]
+        while firstHead:
+            sortArray.append(firstHead.data)
+            firstHead=firstHead.next
+        sortArray.sort()
+        currentHead=head
+        for i in sortArray:
+            currentHead.data=i
+            currentHead=currentHead.next
+        return head
