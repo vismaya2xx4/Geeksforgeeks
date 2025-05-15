@@ -1,0 +1,12 @@
+class Solution {
+    public int countSubstring(String s) {
+        // code here
+        int ans = s.length();
+        HashMap<Character,Integer> map = new HashMap<>();
+        for(char c: s.toCharArray()){
+            ans += map.getOrDefault(c,0);
+            map.put(c, map.getOrDefault(c,0)+1);
+        }
+    return ans;
+    }
+}
