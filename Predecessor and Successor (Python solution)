@@ -1,0 +1,20 @@
+  def findPreSuc(self, root, key):
+        def pred(root,key,ans):
+            if root==None:
+                return ans
+            if root.data>=key:
+                return pred(root.left,key,ans)
+            elif root.data<key:
+                ans=root
+                return pred(root.right,key,ans)
+        
+        def succ(root,key,ans):
+            if root==None:
+                return ans
+            if root.data<=key:
+                return succ(root.right,key,ans)
+            elif root.data>key:
+                ans=root
+                return succ(root.left,key,ans)
+        
+        return [pred(root,key,None),succ(root,key,None)]
