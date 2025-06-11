@@ -1,0 +1,13 @@
+class Solution:
+    def findLength(self, color, radius):
+        stack = []
+        for i in range(len(color)):
+            if stack:
+                key = stack[-1]
+                if color[key] == color[i] and radius[key] == radius[i]:
+                    stack.pop()
+                else:
+                    stack.append(i)
+            else:
+                stack.append(i)
+        return len(stack)
