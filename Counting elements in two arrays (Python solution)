@@ -1,0 +1,13 @@
+import bisect
+
+class Solution:
+    def countLessEq(self, a, b):
+        # code here
+        res = []
+        b.sort()
+        
+        for i in a:
+            temp = bisect.bisect_right(b,i)
+            res.append(temp)
+        
+        return res
