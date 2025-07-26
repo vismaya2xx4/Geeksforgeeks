@@ -1,0 +1,30 @@
+class Solution:
+    def findMajority(self, arr):
+        n = len(arr)
+        if not arr:
+            return []
+
+        # 1st pass: find potential candidates
+        candidate1, count1 = None, 0
+        candidate2, count2 = None, 0
+
+        for num in arr:
+            if candidate1 == num:
+                count1 += 1
+            elif candidate2 == num:
+                count2 += 1
+            elif count1 == 0:
+                candidate1, count1 = num, 1
+            elif count2 == 0:
+                candidate2, count2 = num, 1
+            else:
+                count1 -= 1
+                count2 -= 1
+
+        # 2nd pass: verify counts
+        result = []
+        for candidate in [candidate1, candidate2]:
+            if candidate is not None and arr.count(candidate) > n // 3:
+                result.append(candidate)
+
+        return sorted(result)
