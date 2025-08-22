@@ -1,0 +1,9 @@
+class Solution:
+    def median(self, mat):
+        # code here 
+        res = []
+        for i in mat:
+            for j in i:
+                res.append(j)
+        res.sort()
+        return res[len(res)//2]
