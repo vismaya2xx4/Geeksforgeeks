@@ -1,0 +1,12 @@
+class Solution:
+    def reverse(self, head):
+        ans=[]
+        new=head
+        while new:
+            ans.append(new.data)
+            new=new.next
+        current=head
+        while current:
+            current.data=ans.pop()
+            current=current.next
+        return head
