@@ -1,0 +1,4 @@
+class Solution:
+    def assignHole(self, mices, holes):
+        # code here
+        return max(abs(m - h) for m, h in zip(sorted(mices), sorted(holes)))
